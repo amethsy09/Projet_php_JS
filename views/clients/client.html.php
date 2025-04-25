@@ -1,59 +1,71 @@
-<div class="container mx-auto px-4 py-8">
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-white/10 backdrop-blur-lg">
-        <!-- En-tête -->
-        <div class="px-6 py-4 bg-gradient-to-r from-indigo-600 to-blue-500 border-b border-white/10">
-            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-                <div class="text-white">
-                    <h1 class="text-2xl font-bold">Clients</h1>
-                    <p class="text-sm opacity-90 mt-1" id="total-clients">24 clients actifs</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Clients</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <div class="card">
+            <!-- Header -->
+            <div class="px-6 py-5 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">Gestion des Clients</h1>
+                    <p id="total-clients" class="text-gray-500 mt-1">Chargement en cours...</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
+                
+                <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                    <div class="relative flex-1 sm:w-64">
                         <input type="text"
-                            class="bg-white/20 placeholder-white/60 text-white rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-white/30"
-                            placeholder="Rechercher...">
-                        <i data-feather="search" class="h-4 w-4 text-white absolute left-3 top-3"></i>
+                        id="search"
+                        placeholder="Rechercher un client..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition">
+                        <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
                     </div>
-                    <button
-                        class="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl flex items-center space-x-2 transition-all">
-                        <i data-feather="plus" class="h-5 w-5"></i>
-                        <span>Nouveau client</span>
+                    <button class="bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition">
+                        <i data-feather="plus" class="w-4 h-4"></i>
+                        <span>Ajouter</span>
                     </button>
                 </div>
             </div>
-        </div>
-
-        <!-- Tableau des clients -->
-        <div class="overflow-x-auto">
-            <table class="w-full">
-                <thead class="bg-gray-50/80 backdrop-blur-sm">
-                    <tr class="text-left border-b border-gray-100">
-                        <th class="pl-6 pr-3 py-4">CLIENT</th>
-                        <th class="px-3 py-4">TELEPHONE</th>
-                        <th class="px-3 py-4">STATUT</th>
-                        <th class="px-3 py-4">ADRESSE</th>
-                        <th class="pr-6 pl-3 py-4">ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody id="clients-body" class="divide-y divide-gray-100/50"></tbody>
-            </table>
-        </div>
-
-        <!-- Pied de page -->
-        <div class="px-6 py-4 border-t border-gray-100/30 flex flex-col md:flex-row items-center justify-between bg-gray-50/30">
-            <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                <span class="text-sm text-gray-500">Afficher</span>
-                <select id="items-per-page" class="bg-transparent border-none text-sm text-gray-700 focus:ring-0">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                </select>
-                <span class="text-sm text-gray-500">éléments</span>
+            
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50 text-gray-500 text-sm font-medium uppercase tracking-wider">
+                        <tr class="border-b border-gray-200">
+                            <th class="px-6 py-4 text-left">Client</th>
+                            <th class="px-3 py-4 text-left">Contact</th>
+                            <th class="px-3 py-4 text-left">Statut</th>
+                            <th class="px-3 py-4 text-left">Localisation</th>
+                            <th class="px-6 py-4 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients-body" class="divide-y divide-gray-200"></tbody>
+                </table>
             </div>
-            <div id="pagination" class="flex items-center space-x-2"></div>
+            
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 text-sm text-gray-500">
+                    <span>Affichage</span>
+                    <select id="items-per-page" class="bg-transparent border-none text-gray-700 focus:ring-0">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                    <span>éléments par page</span>
+                </div>
+                
+                <div id="pagination" class="flex items-center gap-1"></div>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="./client.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="client.js"></script>
+</body>
+</html>

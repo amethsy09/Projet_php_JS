@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-define("WEBROOT", "http://khalil.ecole221.sn:8000/");
+define("WEBROOT", "http://mouhamed.sy.ecole221.sn:8000/");
 define("ROOT_PATH", dirname(__DIR__));
 
 require_once ROOT_PATH . '/includes/database.php';
